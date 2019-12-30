@@ -6,13 +6,13 @@
 import pygame
 from pygame.locals import * 
 from constants import *
+from random import sample, choice
 
 class Level:
 	"""Class to create a level (map)"""
 	def __init__(self, file):
 		self.file = file
 		self.structure = 0
-	
 	
 	def create(self):
 		"""Method to create a level from a file.
@@ -33,6 +33,21 @@ class Level:
 				level_structure.append(level_line)
 			#Save the level structure
 			self.structure = level_structure
+
+			#Select randomly 3 lines
+			rand_lines = sample([r for r in range(len(self.structure))],3)
+
+			#Select randomly a 0 from 1st random line
+			ether = sample([i for i, val in enumerate(self.structure[rand_lines[0]]) if '0' in val],1)
+			#Select randomly a 0 from 2nd random line
+			needle = sample([i for i, val in enumerate(self.structure[rand_lines[1]]) if '0' in val],1)
+			#Select randomly a 0 from 3rd random line
+			plastic_tube = sample([i for i, val in enumerate(self.structure[rand_lines[2]]) if '0' in val],1)
+
+			#Replace old 0 by our items letters
+			self.structure[rand_lines[0]][ether[0]] = 'e'
+			self.structure[rand_lines[1]][needle[0]] = 'n'
+			self.structure[rand_lines[2]][plastic_tube[0]] = 'p'
 	
 	
 	def display(self, window):
