@@ -101,13 +101,13 @@ while main_continue:
 
                 # Direction keys
                 elif event.key == K_RIGHT:
-                    mg.deplacer('right')
+                    mg.move('right')
                 elif event.key == K_LEFT:
-                    mg.deplacer('left')
+                    mg.move('left')
                 elif event.key == K_UP:
-                    mg.deplacer('up')
+                    mg.move('up')
                 elif event.key == K_DOWN:
-                    mg.deplacer('down')
+                    mg.move('down')
 
         # Detect position to increment items_counter
         if level.structure[mg.case_y][mg.case_x] == 'e':
