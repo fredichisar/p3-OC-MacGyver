@@ -75,6 +75,9 @@ while main_continue:
 		level.create()
 		level.display(window)
 
+		#Create a counter for items (needle, ether, plastic tube)
+		items_count = 0
+
 		#Create MacGyver character
 		mg = Player(img_mac_gyver, level)
 
@@ -108,13 +111,35 @@ while main_continue:
 				elif event.key == K_DOWN:
 					mg.deplacer('down')			
 			
+		#Detect position to increment items_counter
+		if level.structure[mg.case_y][mg.case_x] == 'e':
+			level.structure[mg.case_y][mg.case_x] = 0
+			items_count += 1
+
+		if level.structure[mg.case_y][mg.case_x] == 'n':
+			level.structure[mg.case_y][mg.case_x] = 0
+			items_count += 1
+
+		if level.structure[mg.case_y][mg.case_x] == 'p':
+			level.structure[mg.case_y][mg.case_x] = 0
+			items_count += 1
+		
+		#Display syringe if items counter is = 3
+		if items_count == 3:
+			level.structure[15][1] = 'g'
+
 		#Display new position
 		window.blit(fond, (0,0))
 		level.display(window)
 		window.blit(mg.direction, (mg.x, mg.y))
 		pygame.display.flip()
 
-		#Finish -> Go to home menu
-		if level.structure[mg.case_y][mg.case_x] == 'f':
+		#Lose -> Display lose screen
+		if level.structure[mg.case_y][mg.case_x] == 'f' and items_count < 3:
 			continue_playing = 0
-			home = img_win
+			img_home = img_lose
+
+		#Win -> Display Win screen
+		if level.structure[mg.case_y][mg.case_x] == 'f' and items_count == 3:
+			continue_playing = 0
+			img_home = img_win

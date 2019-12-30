@@ -54,11 +54,11 @@ class Level:
 		"""Method to display the level from the list returned by create()"""
 		#Load assets
 		wall = pygame.image.load(img_wall).convert()
-		start = pygame.image.load(img_mac_gyver).convert()
 		finish = pygame.image.load(img_guardian).convert_alpha()
 		ether = pygame.image.load(image_ether).convert_alpha()
 		needle = pygame.image.load(image_needle).convert_alpha()
 		plastic_tube = pygame.image.load(image_plastic_tube).convert_alpha()
+		syringe = pygame.image.load(image_syringe).convert_alpha()
 		
 		#Travel across level list
 		lin_number = 0
@@ -71,8 +71,6 @@ class Level:
 				y = lin_number * sprite_size
 				if sprite == 'w':		   #w = Wall
 					window.blit(wall, (x,y))
-				elif sprite == 's':		   #s = Start
-					window.blit(start, (x,y))
 				elif sprite == 'f':		   #f = Finish
 					window.blit(finish, (x,y))
 				elif sprite == 'e':		   #e = Ether
@@ -81,6 +79,8 @@ class Level:
 					window.blit(needle, (x,y))
 				elif sprite == 'p':		   #f = Plastic tube
 					window.blit(plastic_tube, (x,y))
+				elif sprite == 'g':		   #f = Plastic tube
+					window.blit(syringe, (x,y))
 				num_case += 1
 			lin_number += 1
 			
