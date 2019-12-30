@@ -106,7 +106,7 @@ class Player:
         # Character level
         self.level = level
 
-    def deplacer(self, direction):
+    def move(self, direction):
         """Method to move the character"""
 
         # Move to the right
